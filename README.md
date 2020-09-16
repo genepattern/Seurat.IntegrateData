@@ -1,2 +1,2 @@
 # Seurat.BatchCorrection
-GenePattern module which implemente the batch correction algorithm within Seurat.
+GenePattern module which implements the batch correction algorithm within Seurat.
