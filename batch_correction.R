@@ -1,5 +1,5 @@
 suppressMessages(suppressWarnings(library("log4r")))
-logfile <- "batch_processing_log.txt"
+logfile <- "batch_correction_log.txt"
 console_appender <- console_appender(layout = default_log_layout())
 file_appender <- file_appender(logfile, append = TRUE, layout = default_log_layout())
 logger <- log4r::logger(threshold = "INFO", appenders = list(console_appender, file_appender))
@@ -147,5 +147,3 @@ info(logger, message = "Saving Integrated Seurat Data as RDS")
 saveRDS(data_integrated, file = paste(args$output_file_name, ".rds", sep = ""))
 info(logger, message = "Done!")
 info(logger, message = "==========================================================")
-
-# Rscript conos_optparse.R --file_list conos/MEL_noribo_small.txt\ conos/HNSCC_noribo_small.txt --nCount_RNA TRUE --nFeature_RNA TRUE --output_file_name conos_analysis
