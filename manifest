@@ -1,0 +1,85 @@
+#Seurat.BatchCorrection
+#Tue Sep 22 20:14:20 UTC 2020
+JVMLevel=
+LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:5.2
+author=Jonathan Zamora;UCSD-MesirovLab
+categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
+commandLine=Rscript  <libdir>batch_correction.R --file_list  <file_list>  --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
+cpuType=any
+description=Batch Correction for Seurat Objects
+fileFormat=pdf;rds;txt
+job.docker.image=genepattern/seurat-suite\:2.2
+language=any
+name=Seurat.BatchCorrection
+os=any
+p1_MODE=IN
+p1_TYPE=FILE
+p1_default_value=
+p1_description=List of files to load
+p1_fileFormat=txt
+p1_flag=--file_list
+p1_name=file_list
+p1_numValues=1+
+p1_optional=
+p1_prefix=
+p1_prefix_when_specified=
+p1_type=java.io.File
+p1_value=
+p2_MODE=
+p2_TYPE=Integer
+p2_default_value=30
+p2_description=How many PCA components to use (?) (default \= 30)
+p2_fileFormat=
+p2_flag=--ncomps
+p2_name=ncomps
+p2_numValues=1..1
+p2_optional=
+p2_prefix=
+p2_prefix_when_specified=
+p2_type=java.lang.Integer
+p2_value=
+p3_MODE=
+p3_TYPE=TEXT
+p3_default_value=TRUE
+p3_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)
+p3_fileFormat=
+p3_flag=--nCount_RNA
+p3_name=nCount_RNA
+p3_numValues=1..1
+p3_optional=
+p3_prefix=
+p3_prefix_when_specified=
+p3_type=java.lang.String
+p3_value=TRUE\=TRUE;FALSE\=FALSE
+p4_MODE=
+p4_TYPE=TEXT
+p4_default_value=TRUE
+p4_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)
+p4_fileFormat=
+p4_flag=--nFeature_RNA
+p4_name=nFeature_RNA
+p4_numValues=1..1
+p4_optional=
+p4_prefix=
+p4_prefix_when_specified=
+p4_type=java.lang.String
+p4_value=TRUE\=TRUE;FALSE\=FALSE
+p5_MODE=
+p5_TYPE=TEXT
+p5_default_value=batch_correction_results
+p5_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')
+p5_fileFormat=
+p5_flag=--output_file_name
+p5_name=output_file_name
+p5_numValues=1..1
+p5_optional=
+p5_prefix=
+p5_prefix_when_specified=
+p5_type=java.lang.String
+p5_value=
+privacy=public
+quality=development
+taskDoc=
+taskType=beta
+userid=jonzamora
+version=Modified log file name
