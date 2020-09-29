@@ -19,6 +19,7 @@ The `Seurat.BatchCorrection` Module aims to integrate / "batch-correct" multiple
 ## References
 ---
 [Satija Lab](https://satijalab.org)
+
 [Seurat](https://satijalab.org/seurat/)
 
 ### Technical Notes
