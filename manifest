@@ -1,10 +1,10 @@
 #Seurat.BatchCorrection
-#Tue Sep 22 20:14:20 UTC 2020
+#Fri Oct 09 09:18:23 UTC 2020
 JVMLevel=
-LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:5.2
+LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:6
 author=Jonathan Zamora;UCSD-MesirovLab
 categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
-commandLine=Rscript  <libdir>batch_correction.R --file_list  <file_list>  --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
+commandLine=Rscript  <libdir>batch_correction.R --file_list  <file_list> --use_filenames_for_plots <use_filenames_for_plots> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name> 
 cpuType=any
 description=Batch Correction for Seurat Objects
 fileFormat=pdf;rds;txt
@@ -26,38 +26,38 @@ p1_prefix_when_specified=
 p1_type=java.io.File
 p1_value=
 p2_MODE=
-p2_TYPE=Integer
-p2_default_value=30
-p2_description=How many PCA components to use (?) (default \= 30)
+p2_TYPE=TEXT
+p2_default_value=FALSE
+p2_description=Display File Names on UMAP & Violin Plots (default \= FALSE)
 p2_fileFormat=
-p2_flag=--ncomps
-p2_name=ncomps
+p2_flag=--use_filenames_for_plots
+p2_name=use_filenames_for_plots
 p2_numValues=1..1
 p2_optional=
 p2_prefix=
 p2_prefix_when_specified=
-p2_type=java.lang.Integer
-p2_value=
+p2_type=java.lang.String
+p2_value=FALSE\=FALSE;TRUE\=TRUE
 p3_MODE=
-p3_TYPE=TEXT
-p3_default_value=TRUE
-p3_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)
+p3_TYPE=Integer
+p3_default_value=30
+p3_description=How many PCA components to use (?) (default \= 30)
 p3_fileFormat=
-p3_flag=--nCount_RNA
-p3_name=nCount_RNA
+p3_flag=--ncomps
+p3_name=ncomps
 p3_numValues=1..1
 p3_optional=
 p3_prefix=
 p3_prefix_when_specified=
-p3_type=java.lang.String
-p3_value=TRUE\=TRUE;FALSE\=FALSE
+p3_type=java.lang.Integer
+p3_value=
 p4_MODE=
 p4_TYPE=TEXT
 p4_default_value=TRUE
-p4_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)
+p4_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)
 p4_fileFormat=
-p4_flag=--nFeature_RNA
-p4_name=nFeature_RNA
+p4_flag=--nCount_RNA
+p4_name=nCount_RNA
 p4_numValues=1..1
 p4_optional=
 p4_prefix=
@@ -66,20 +66,33 @@ p4_type=java.lang.String
 p4_value=TRUE\=TRUE;FALSE\=FALSE
 p5_MODE=
 p5_TYPE=TEXT
-p5_default_value=batch_correction_results
-p5_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')
+p5_default_value=TRUE
+p5_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)
 p5_fileFormat=
-p5_flag=--output_file_name
-p5_name=output_file_name
+p5_flag=--nFeature_RNA
+p5_name=nFeature_RNA
 p5_numValues=1..1
 p5_optional=
 p5_prefix=
 p5_prefix_when_specified=
 p5_type=java.lang.String
-p5_value=
+p5_value=TRUE\=TRUE;FALSE\=FALSE
+p6_MODE=
+p6_TYPE=TEXT
+p6_default_value=batch_correction_results
+p6_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')
+p6_fileFormat=
+p6_flag=--output_file_name
+p6_name=output_file_name
+p6_numValues=1..1
+p6_optional=
+p6_prefix=
+p6_prefix_when_specified=
+p6_type=java.lang.String
+p6_value=
 privacy=public
 quality=development
 taskDoc=
 taskType=beta
 userid=jonzamora
-version=Modified log file name
+version=Major updates to Batch Correction Output
