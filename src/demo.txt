@@ -1,2 +1,2 @@
-data/HNSCC_noribo_small.txt
-data/MEL_noribo_small.txt
+../data/HNSCC_noribo_small.txt
+../data/MEL_noribo_small.txt

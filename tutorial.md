@@ -1,4 +1,7 @@
 # `Seurat.BatchCorrection` Tutorial 📝
+---
+
+This tutorial is based off the [**Integration and Label Transfer**](https://satijalab.org/seurat/v3.2/integration.html) Vignette published and developed by the [Satija Lab](https://satijalab.org).
 
 1. `git clone` our `Seurat.BatchCorrection` repository onto your local machine
 2. `demo.txt` contains the file paths for 2 test datasets -- `HNSCC_noribo_small.txt` and `MEL_noribo_small.txt`. These are 500x500 single-cell cancer datasets that will be batch corrected
