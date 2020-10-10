@@ -1,6 +1,6 @@
 # Batch Correction Script
-# Written by Jonathan Zamora, UCSD
-# for use in GenePattern
+# Written by Jonathan Zamora, UCSD-MesirovLab
+# For use in GenePattern
 
 suppressMessages(suppressWarnings(library("log4r")))
 logfile <- "batch_correction_log.txt"
