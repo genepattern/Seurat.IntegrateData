@@ -1,3 +1,7 @@
+# Batch Correction Script
+# Written by Jonathan Zamora, UCSD
+# for use in GenePattern
+
 suppressMessages(suppressWarnings(library("log4r")))
 logfile <- "batch_correction_log.txt"
 console_appender <- console_appender(layout = default_log_layout())
@@ -164,17 +168,32 @@ info(logger, message = "Finished running UMAP on Seurat Objects")
 info(logger, message = "==========================================================")
 
 
-info(logger, message = "==========================================================")
-info(logger, message = "Creating Dictionary for Seurat Batch Objects")
-pdf(file = paste(args$output_file_name, ".pdf", sep = ""), width = 8.5, height = 11)
-df <- data.frame(do.call(rbind, batch_names))
-colnames(df) <- "Batch_Names"
-df$"File_Names" <- condensed_file_names
-first.step <- lapply(df, unlist)
-second.step <- as.data.frame(first.step, stringsAsFactors = F)
-gridExtra::grid.table(second.step)
-info(logger, message = "Finished Creating Dictionary for Seurat Batch Objects")
-info(logger, message = "==========================================================")
+if (args$use_filenames_for_plots == FALSE){
+  info(logger, message = "==========================================================")
+  info(logger, message = "Creating Dictionary for Seurat Batch Objects")
+  pdf(file = paste(args$output_file_name, ".pdf", sep = ""), width = 8.5, height = 11)
+  
+  # Set up data.frame for Batch Names and their corresponding File Names
+  df <- data.frame(do.call(rbind, batch_names))
+  colnames(df) <- "Batch_Names"
+  df$"File_Names" <- condensed_file_names
+  
+  
+  # These two steps are done in order to correct an error with the data stored in the data.frame
+  first.step <- lapply(df, unlist)
+  second.step <- as.data.frame(first.step, stringsAsFactors = F)
+  
+  description = "-----NOTE-----\nThe below table displays a mapping of each input file to a corresponding batch number.\nThis mapping is done in order to simplify the display of the plots on Pg. 2 and Pg. 3."
+  plot.new() # Needed in order to use text() function to display description above table
+  gridExtra::grid.table(second.step) # Display the Batch Mapping Table
+  text(x=0.5, y=1, description, font=2) # Display the description above the Batch Mapping Table
+  
+  info(logger, message = "Finished Creating Dictionary for Seurat Batch Objects")
+  info(logger, message = "==========================================================")
+  
+} else{ # This will simply generate a pdf file when  args$use_filenames_for_plots == TRUE
+  pdf(file = paste(args$output_file_name, ".pdf", sep = ""), width = 8.5, height = 11)
+}
 
 
 info(logger, message = "==========================================================")
