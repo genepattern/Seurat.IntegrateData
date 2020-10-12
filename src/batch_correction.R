@@ -183,10 +183,10 @@ if (args$use_filenames_for_plots == FALSE){
   first.step <- lapply(df, unlist)
   second.step <- as.data.frame(first.step, stringsAsFactors = F)
   
-  description = "-----NOTE-----\nThe below table displays a mapping of each input file to a corresponding batch number.\nThis mapping is done in order to simplify the display of the plots on Pg. 2 and Pg. 3."
+  description = "NOTE:\nThe below table displays a mapping of each input file to a corresponding batch number.\nThis mapping is done in order to simplify the display of the plots on Pg. 2 and Pg. 3."
   plot.new() # Needed in order to use text() function to display description above table
   gridExtra::grid.table(second.step) # Display the Batch Mapping Table
-  text(x=0.5, y=1, description, font=2) # Display the description above the Batch Mapping Table
+  text(x=0, y=1, description, font=2, pos = 4, cex = 0.9) # Display the description above the Batch Mapping Table
   
   info(logger, message = "Finished Creating Dictionary for Seurat Batch Objects")
   info(logger, message = "==========================================================")
