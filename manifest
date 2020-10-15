@@ -1,7 +1,7 @@
 #Seurat.BatchCorrection
-#Mon Oct 12 19:18:55 UTC 2020
+#Thu Oct 15 19:06:58 UTC 2020
 JVMLevel=
-LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:6.2
+LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:6.3
 author=Jonathan Zamora;UCSD-MesirovLab
 categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
 commandLine=Rscript  <libdir>batch_correction.R --file_list  <file_list> --use_filenames_for_plots <use_filenames_for_plots> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name> 
@@ -95,4 +95,4 @@ quality=development
 taskDoc=
 taskType=beta
 userid=jonzamora
-version=Output Revisions
+version=UMAP Plot Output Revisions
