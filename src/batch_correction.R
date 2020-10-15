@@ -2,11 +2,13 @@
 # Written by Jonathan Zamora, UCSD-MesirovLab
 # For use in GenePattern
 
+
 suppressMessages(suppressWarnings(library("log4r")))
 logfile <- "batch_correction_log.txt"
 console_appender <- console_appender(layout = default_log_layout())
 file_appender <- file_appender(logfile, append = TRUE, layout = default_log_layout())
 logger <- log4r::logger(threshold = "INFO", appenders = list(console_appender, file_appender))
+
 
 info(logger, message = "==========================================================")
 info(logger, message = "Loading libraries: Seurat, optparse, log4r")
@@ -30,6 +32,7 @@ info(logger, message = "========================================================
 # # PARAMETERS for OUTPUT
 # output_file_name: "batch_correction_results" (Default)
 # # ====================================
+
 
 # Parse Input Arguments
 parser = OptionParser()
@@ -78,6 +81,7 @@ for(i in 1:length(lines)){
   data_list[[i]] <- read.table(file = lines[[i]], header = TRUE, sep = "\t", row.names = 1)
   condensed_file_names[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1)
 }
+
 close(con)
 
 info(logger, message = paste("Read Files contained within:", args$file_list))
@@ -105,8 +109,8 @@ for(i in 1:length(data_list)){
   
   # Default Case for use_filenames_for_plots
   if (args$use_filenames_for_plots == FALSE){
-    seurat_objects[[i]] <- CreateSeuratObject(counts = data_list[[i]], project = paste("Batch", counter))
-    
+    seurat_objects[[i]] <- CreateSeuratObject(counts = data_list[[i]], project = batch_names[[i]])
+
     if (length(levels(seurat_objects[[i]])) > 1){
       levels(seurat_objects[[i]]@active.ident) <- rep(batch_names[[i]], length(levels(seurat_objects[[i]])))
     }
@@ -136,6 +140,8 @@ info(logger, message = "========================================================
 
 
 reference_list <- seurat_objects
+
+
 info(logger, message = "==========================================================")
 info(logger, message = paste("Finding Integration Anchors and Integrating Data on Seurat Objects"))
 data_anchors <- FindIntegrationAnchors(object.list = reference_list, dims = 1:30)
@@ -179,7 +185,7 @@ if (args$use_filenames_for_plots == FALSE){
   df$"File_Names" <- condensed_file_names
   
   
-  # These two steps are done in order to correct an error with the data stored in the data.frame
+  # These two steps are executed in order to correct an error with the data stored in the data.frame
   first.step <- lapply(df, unlist)
   second.step <- as.data.frame(first.step, stringsAsFactors = F)
   
@@ -198,9 +204,11 @@ if (args$use_filenames_for_plots == FALSE){
 
 info(logger, message = "==========================================================")
 info(logger, message = "Plotting UMAP Plots:")
+
 p1 <- DimPlot(data_integrated, reduction = "umap") + ggplot2::theme(legend.position = "bottom")
-p2 <- DimPlot(data_integrated, reduction = "umap", label = TRUE, repel = TRUE) + NoLegend()
-p1 + p2
+# p2 <- DimPlot(data_integrated, reduction = "umap", label = TRUE, repel = TRUE) + NoLegend()
+p1
+
 info(logger, message = "Finished Plotting UMAP Plots")
 info(logger, message = "==========================================================")
 
