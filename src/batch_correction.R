@@ -162,14 +162,14 @@ info(logger, message = "========================================================
 
 info(logger, message = "==========================================================")
 info(logger, message = paste("Running PCA on Seurat Objects"))
-data_integrated <- RunPCA(data_integrated, npcs = args$ncomps, verbose = FALSE)
+data_integrated <- RunPCA(data_integrated, npcs = args$ncomps, verbose = FALSE, seed.use = 42)
 info(logger, message = paste("Finished running PCA on Seurat Objects"))
 info(logger, message = "==========================================================")
 
 
 info(logger, message = "==========================================================")
 info(logger, message = "Running UMAP on Seurat Objects")
-data_integrated <- RunUMAP(data_integrated, reduction = "pca", dims = 1:args$ncomps)
+data_integrated <- RunUMAP(data_integrated, reduction.use = "pca", dims = 1:args$ncomps, seed.use = 42)
 info(logger, message = "Finished running UMAP on Seurat Objects")
 info(logger, message = "==========================================================")
 
@@ -206,7 +206,7 @@ info(logger, message = "========================================================
 info(logger, message = "Plotting UMAP Plots:")
 
 p1 <- DimPlot(data_integrated, reduction = "umap") + ggplot2::theme(legend.position = "bottom")
-# p2 <- DimPlot(data_integrated, reduction = "umap", label = TRUE, repel = TRUE) + NoLegend()
+
 p1
 
 info(logger, message = "Finished Plotting UMAP Plots")
