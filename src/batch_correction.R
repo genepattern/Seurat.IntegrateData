@@ -150,26 +150,26 @@ info(logger, message = paste("Finished Finding Integration Anchors and Integrati
 info(logger, message = "==========================================================")
 
 
-DefaultAssay(data_integrated) <- "integrated"
+DefaultAssay(data_integrated) <- "integrated" # Set name of default assay as "integrated"
 
 
 info(logger, message = "==========================================================")
 info(logger, message = paste("Scaling Data"))
-data_integrated <- ScaleData(data_integrated, verbose = FALSE)
+data_integrated <- ScaleData(data_integrated, verbose = FALSE) # Scale and Center Features in dataset(s)
 info(logger, message = "Finished Scaling Data")
 info(logger, message = "==========================================================")
 
 
 info(logger, message = "==========================================================")
 info(logger, message = paste("Running PCA on Seurat Objects"))
-data_integrated <- RunPCA(data_integrated, npcs = args$ncomps, verbose = FALSE, seed.use = 42)
+data_integrated <- RunPCA(data_integrated, npcs = args$ncomps, verbose = FALSE, seed.use = 42) # Dimensionality Reduction
 info(logger, message = paste("Finished running PCA on Seurat Objects"))
 info(logger, message = "==========================================================")
 
 
 info(logger, message = "==========================================================")
 info(logger, message = "Running UMAP on Seurat Objects")
-data_integrated <- RunUMAP(data_integrated, reduction.use = "pca", dims = 1:args$ncomps, seed.use = 42)
+data_integrated <- RunUMAP(data_integrated, reduction.use = "pca", dims = 1:args$ncomps, seed.use = 42) # Another Dimensional Reduction Technique
 info(logger, message = "Finished running UMAP on Seurat Objects")
 info(logger, message = "==========================================================")
 
@@ -185,7 +185,7 @@ if (args$use_filenames_for_plots == FALSE){
   df$"File_Names" <- condensed_file_names
   
   
-  # These two steps are executed in order to correct an error with the data stored in the data.frame
+  # These two steps are executed in order to correct an error with how the data is originally stored in the data.frame
   first.step <- lapply(df, unlist)
   second.step <- as.data.frame(first.step, stringsAsFactors = F)
   
