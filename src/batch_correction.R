@@ -37,11 +37,11 @@ info(logger, message = "========================================================
 # Parse Input Arguments
 parser = OptionParser()
 # ====================================
-parser <- add_option(parser, c("--file_list"), help = "List of files to load. Separate file names with '\ ' ")
+parser <- add_option(parser, c("--input_files"), help = "List of files to load. Separate file names with '\ ' ")
 parser <- add_option(parser, c("--use_filenames_for_plots"), type = "logical", default = FALSE, help = "Display File Names on UMAP & Violin Plots (default = FALSE)")
 # ====================================
 # PARAMETERS for PCA
-parser <- add_option(parser, c("--ncomps"), type = "integer", default = 30, help = "How many PCA components to use (?) (default = 30)")
+parser <- add_option(parser, c("--ncomps"), type = "integer", default = 50, help = "How many PCA components to use (default = 50)")
 # ====================================
 # PARAMETERS for Violin Plot
 parser <- add_option(parser, c("--nCount_RNA"), type = "logical", default = TRUE, help = "Display nCount_RNA feature on Violin Plot (default = TRUE)")
@@ -54,7 +54,7 @@ info(logger, message = "========================================================
 args <- parse_args(parser)
 info(logger, message = "Parameters used:")
 info(logger, message = paste("help:", args$help))
-info(logger, message = paste("file_list:", args$file_list))
+info(logger, message = paste("input_files:", args$input_files))
 info(logger, message = paste("use_filenames_for_plots:", args$use_filenames_for_plots))
 info(logger, message = paste("ncomps:", args$ncomps))
 info(logger, message = paste("nCount_RNA:", args$nCount_RNA))
@@ -66,7 +66,7 @@ info(logger, message = "========================================================
 
 # Read file list from command line
 # Read the lines of the file and store them in `lines`
-con <- file(args$file_list, open = "r")
+con <- file(args$input_files, open = "r")
 lines = readLines(con)
 
 # Initialize lists for data and condensed file names
@@ -75,7 +75,7 @@ condensed_file_names <- list()
 
 
 info(logger, message = "==========================================================")
-info(logger, message = paste("Reading Files contained within:", args$file_list))
+info(logger, message = paste("Reading Files contained within:", args$input_files))
 
 for(i in 1:length(lines)){
   data_list[[i]] <- read.table(file = lines[[i]], header = TRUE, sep = "\t", row.names = 1)
@@ -84,12 +84,12 @@ for(i in 1:length(lines)){
 
 close(con)
 
-info(logger, message = paste("Read Files contained within:", args$file_list))
+info(logger, message = paste("Read Files contained within:", args$input_files))
 info(logger, message = "==========================================================")
 
 
 info(logger, message = "==========================================================")
-info(logger, message = paste("Creating Seurat Objects for files within:", args$file_list))
+info(logger, message = paste("Creating Seurat Objects for files within:", args$input_files))
 
 # Initialize Batch Counter
 counter = 1
@@ -123,7 +123,7 @@ for(i in 1:length(data_list)){
   }
 }
 
-info(logger, message = paste("Created Seurat Objects for files contained within:", args$file_list))
+info(logger, message = paste("Created Seurat Objects for files contained within:", args$input_files))
 info(logger, message = "==========================================================")
 
 
