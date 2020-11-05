@@ -1,0 +1,98 @@
+#Seurat.BatchCorrection
+#Tue Nov 03 20:07:38 UTC 2020
+JVMLevel=
+LSID=urn\:lsid\:genepattern.org\:genepatternmodules\:00414\:6.3.3
+author=Jonathan Zamora;UCSD-MesirovLab
+categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
+commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files> --use_filenames_for_plots <use_filenames_for_plots> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name> 
+cpuType=any
+description=Batch Correction for Seurat Objects
+fileFormat=pdf;rds;txt
+job.docker.image=genepattern/seurat-suite\:2.2
+language=any
+name=Seurat.BatchCorrection
+os=any
+p1_MODE=IN
+p1_TYPE=FILE
+p1_default_value=
+p1_description=List of files to load
+p1_fileFormat=txt
+p1_flag=--input_files
+p1_name=input_files
+p1_numValues=1+
+p1_optional=
+p1_prefix=
+p1_prefix_when_specified=
+p1_type=java.io.File
+p1_value=
+p2_MODE=
+p2_TYPE=TEXT
+p2_default_value=FALSE
+p2_description=Display File Names on UMAP & Violin Plots (default \= FALSE)
+p2_fileFormat=
+p2_flag=--use_filenames_for_plots
+p2_name=use_filenames_for_plots
+p2_numValues=1..1
+p2_optional=
+p2_prefix=
+p2_prefix_when_specified=
+p2_type=java.lang.String
+p2_value=FALSE\=FALSE;TRUE\=TRUE
+p3_MODE=
+p3_TYPE=Integer
+p3_default_value=50
+p3_description=How many PCA components to use (default \= 50)
+p3_fileFormat=
+p3_flag=--ncomps
+p3_name=ncomps
+p3_numValues=1..1
+p3_optional=
+p3_prefix=
+p3_prefix_when_specified=
+p3_type=java.lang.Integer
+p3_value=
+p4_MODE=
+p4_TYPE=TEXT
+p4_default_value=TRUE
+p4_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)\n\n<br>\n<br>\n\nnCount_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets
+p4_fileFormat=
+p4_flag=--nCount_RNA
+p4_name=nCount_RNA
+p4_numValues=1..1
+p4_optional=
+p4_prefix=
+p4_prefix_when_specified=
+p4_type=java.lang.String
+p4_value=TRUE\=TRUE;FALSE\=FALSE
+p5_MODE=
+p5_TYPE=TEXT
+p5_default_value=TRUE
+p5_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)\n\n<br>\n<br>\n\nnFeature_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets
+p5_fileFormat=
+p5_flag=--nFeature_RNA
+p5_name=nFeature_RNA
+p5_numValues=1..1
+p5_optional=
+p5_prefix=
+p5_prefix_when_specified=
+p5_type=java.lang.String
+p5_value=TRUE\=TRUE;FALSE\=FALSE
+p6_MODE=
+p6_TYPE=TEXT
+p6_default_value=batch_correction_results
+p6_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')
+p6_fileFormat=
+p6_flag=--output_file_name
+p6_name=output_file_name
+p6_numValues=1..1
+p6_optional=
+p6_prefix=
+p6_prefix_when_specified=
+p6_type=java.lang.String
+p6_value=
+privacy=public
+quality=development
+taskDoc=doc.html
+taskType=beta
+userid=jonzamora
+version=First GP release
