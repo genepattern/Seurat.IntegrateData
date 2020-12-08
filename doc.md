@@ -6,7 +6,7 @@
 
 **Contact**: [Forum Link](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help)
 
-**Algorithm Version**: 1
+**Algorithm Version**: Seurat 3.2.0
 
 ---
 
