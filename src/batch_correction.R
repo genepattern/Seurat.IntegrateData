@@ -18,7 +18,9 @@ suppressMessages(suppressWarnings(library("ggplot2")))
 info(logger, message = "Loaded libraries: Seurat, ggplot2, optparse, log4r")
 info(logger, message = "==========================================================")
 
-
+# # ====================================
+# # PARAMETERS for INPUT
+# use_batch_names = FALSE (Default)
 # # ====================================
 # # PARAMETERS for PCA and Violin Plot
 # use_filenames_for_plots = FALSE (Default)
@@ -34,23 +36,24 @@ info(logger, message = "========================================================
 # output_file_name: "batch_correction_results" (Default)
 # # ====================================
 
-
+# Parameter Descriptions can be found at: https://github.com/genepattern/Seurat.BatchCorrection/blob/develop/doc.md
 # ====================================
 # Parse Input Arguments
 parser = OptionParser()
 # ====================================
-parser <- add_option(parser, c("--input_files"), help = "List of files to load. Separate file names with '\ ' ")
-parser <- add_option(parser, c("--use_filenames_for_plots"), type = "logical", default = FALSE, help = "Display File Names on UMAP & Violin Plots (default = FALSE)")
+parser <- add_option(parser, c("--input_files"), help="List of files to load. Separate file names with '\ ' ")
+parser <- add_option(parser, c("--use_filenames_for_plots"), type="logical", default=FALSE, help="Display File Names on UMAP & Violin Plots (default = FALSE)")
+parser <- add_option(parser, c("--use_batch_names"), type="logical", default=TRUE, help="Map each input file to Batch Numbers (default = TRUE)")
 # ====================================
 # PARAMETERS for PCA
-parser <- add_option(parser, c("--ncomps"), type = "integer", default = 50, help = "How many PCA components to use (default = 50)")
+parser <- add_option(parser, c("--ncomps"), type="integer", default=50, help = "How many PCA components to use (default = 50)")
 # ====================================
 # PARAMETERS for Violin Plot
-parser <- add_option(parser, c("--nCount_RNA"), type = "logical", default = TRUE, help = "Display nCount_RNA feature on Violin Plot (default = TRUE)")
-parser <- add_option(parser, c("--nFeature_RNA"), type = "logical", default = TRUE, help = "Display nFeature_RNA feature on Violin Plot (default = TRUE)")
+parser <- add_option(parser, c("--nCount_RNA"), type="logical", default=TRUE, help="Display nCount_RNA feature on Violin Plot (default = TRUE)")
+parser <- add_option(parser, c("--nFeature_RNA"), type="logical", default=TRUE, help="Display nFeature_RNA feature on Violin Plot (default = TRUE)")
 # ====================================
 # PARAMETERS for Output File
-parser <- add_option(parser, c("--output_file_name"), default = "batch_correction_results", help = "Output File Name for Batch Correction Analysis (default = 'batch_correction_results')")
+parser <- add_option(parser, c("--output_file_name"), default="batch_correction_results", help="Output File Name for Batch Correction Analysis (default = 'batch_correction_results')")
 # ====================================
 
 
@@ -60,6 +63,7 @@ args <- parse_args(parser)
 info(logger, message = paste("help:", args$help))
 info(logger, message = paste("input_files:", args$input_files))
 info(logger, message = paste("use_filenames_for_plots:", args$use_filenames_for_plots))
+info(logger, message = paste("use_batch_names:", args$use_batch_names))
 info(logger, message = paste("ncomps:", args$ncomps))
 info(logger, message = paste("nCount_RNA:", args$nCount_RNA))
 info(logger, message = paste("nFeature_RNA:", args$nFeature_RNA))
@@ -76,15 +80,31 @@ data_labels <- list()
 batch_names <- list()
 counter = 1 # Initialize Batch Counter
 
-
 info(logger, message = "==========================================================")
 info(logger, message = paste("Reading Files contained within:", args$input_files))
 
+# Run this code by default
 for(i in 1:length(lines)){
-  data[[i]] <- read.delim(file = lines[[i]], row.names=1) # creates data frame for each input file
-  data_labels[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores corresponding data labels
-  batch_names[[i]] <- paste("Batch", counter) # store batch names in list
-  counter = counter + 1 # increment batch counter
+  
+  if (grepl("\\.txt$", lines[[i]]))
+  {
+    data[[i]] <- read.delim(file = lines[[i]], row.names=1) # creates data frame for each input file
+    data_labels[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores corresponding data labels
+    
+    if (args$use_batch_names == TRUE ) {
+      batch_names[[i]] <- paste("Batch", counter) # store batch names in list
+    }
+    
+    else if (args$use_batch_names == FALSE) {
+      batch_names[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores data labels for each batch name
+    }
+    counter = counter + 1 # increment batch counter
+  } else {
+    info(logger, message = paste("ERROR: The current file", lines[[i]], "is not in .txt format. Please use .txt file inputs only"))
+    info(logger, message = paste("If you have .h5 or .tar files, consult Seurat.QC [https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2] to convert those files to .txt format"))
+    info(logger, message = paste("END OF PROGRAM"))
+    quit(save="no")
+  }
 }
 
 close(con) # Close "read" connection for input files; No longer needed

@@ -1,4 +1,4 @@
-# Seurat.BatchCorrection (v1)
+# Seurat.BatchCorrection (v2)
 ---
 **Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package.
 
@@ -30,8 +30,9 @@ The `Seurat.BatchCorrection` Module aims to integrate / "batch-correct" multiple
 
 | Name | Description |
 -------|--------------
-| input_files         | `.txt` file(s) are used as input, and each `.txt` file is composed of gene expression data |
+| input_files         | `.txt` file(s) are used as input, and each `.txt` file is composed of gene expression data. If your files are in `.h5` or `.tar` format, please consult the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2) module to pre-process your data and then use the .txt output from Seurat.QC in this module. |
 | use_filenames_for_plots | Determines whether `.txt` input file names will be used alongside the batch correction script's UMAP and Violin Plots. By default, this value is `FALSE` since we prefer to map each batch of gene expression data to an ordered batch number beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files.
+| use_batch_names | By mapping each input file to a Batch Number, starting from 1, we can use this batch-mapping throughout the batch correction script to produce an elegant, straightforward output for users. When set to FALSE, the batch names will be set to the file names.
 | ncomps            | The number of principal components to be used in the Principal Component Analysis (PCA) in our Batch Correction. By default, our script uses the default value of 50 for the # of Principal Components.                       |
 | nCount_RNA        | Boolean TRUE / FALSE parameter that will affect whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets|
 | nFeature_RNA      | Boolean TRUE / FALSE parameter that will affect whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets            |
@@ -72,4 +73,5 @@ The `Seurat.BatchCorrection` Module aims to integrate / "batch-correct" multiple
 
 | Version | Release Date | Description                                 |
 ----------|--------------|---------------------------------------------|
-| 1       | TBD          | Initial Release of `Seurat.BatchCorrection` |
+| 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection` |
+| 2       | Feb. 24th, 2021 | Introduced updates to parameters, program structure, and output format
