@@ -1,20 +1,14 @@
 #Seurat.BatchCorrection
-#Thu Mar 04 03:14:49 UTC 2021
+#Thu Mar 04 03:39:38 UTC 2021
 JVMLevel=
-
-urn:lsid:::
-LSID=urn\:lsid\:8080.genepattern.org\:module.analysis\:00414\:2
+LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:7
 author=Jonathan Zamora;UCSD-MesirovLab
 categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
-<<<<<<< HEAD
 commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
-=======
-commandLine=Rscript /module/batch_correction.R --input_files  <input_files> --use_filenames_for_plots <use_filenames_for_plots> --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
->>>>>>> 23c077264a5363bb0d49cb2687b2309c649794d5
 cpuType=any
 description=Batch Correction for Seurat Objects
 fileFormat=pdf;rds;txt
-job.docker.image=genepattern/seurat-batchcorrection:2.0
+job.docker.image=genepattern/seurat-suite\:2.4
 language=any
 name=Seurat.BatchCorrection
 os=any
@@ -97,8 +91,8 @@ p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=
 privacy=public
-quality=production
+quality=development
 taskDoc=
-taskType=single-cell
+taskType=beta
 userid=jonzamora
 version=Introduced various updates to parameters, output, and program structure
