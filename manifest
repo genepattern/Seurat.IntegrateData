@@ -1,10 +1,10 @@
 #Seurat.BatchCorrection
-#Wed Feb 24 21:45:11 UTC 2021
+#Thu Mar 04 03:14:49 UTC 2021
 JVMLevel=
 LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:7
 author=Jonathan Zamora;UCSD-MesirovLab
 categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
-commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files> --use_filenames_for_plots <use_filenames_for_plots> --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
+commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
 cpuType=any
 description=Batch Correction for Seurat Objects
 fileFormat=pdf;rds;txt
@@ -27,50 +27,50 @@ p1_type=java.io.File
 p1_value=
 p2_MODE=
 p2_TYPE=TEXT
-p2_default_value=FALSE
-p2_description=Display File Names on UMAP & Violin Plots (default \= FALSE).\n<br><br>\nDetermines whether .txt input file names will be used alongside the batch correction script's UMAP and Violin Plots. By default, this value is FALSE since we prefer to map each batch of gene expression data to an ordered batch number beginning with Batch 1 and going up to Batch n where n represents the number of input files.
+p2_default_value=TRUE
+p2_description=Map each input file to Batch Numbers (default \= TRUE)\n<br><br>\nBy mapping each input file to a Batch Number, starting from 1, we can use this batch-mapping throughout the batch correction script to produce an elegant, straightforward output for users. When set to FALSE, the batch names will be set to the file names.
 p2_fileFormat=
-p2_flag=--use_filenames_for_plots
-p2_name=use_filenames_for_plots
+p2_flag=--use_batch_names
+p2_name=use_batch_names
 p2_numValues=1..1
 p2_optional=
 p2_prefix=
 p2_prefix_when_specified=
 p2_type=java.lang.String
-p2_value=FALSE\=FALSE;TRUE\=TRUE
+p2_value=TRUE\=TRUE;FALSE\=FALSE
 p3_MODE=
-p3_TYPE=TEXT
-p3_default_value=TRUE
-p3_description=Map each input file to Batch Numbers (default \= TRUE)\n<br><br>\nBy mapping each input file to a Batch Number, starting from 1, we can use this batch-mapping throughout the batch correction script to produce an elegant, straightforward output for users. When set to FALSE, the batch names will be set to the file names.
+p3_TYPE=Integer
+p3_default_value=50
+p3_description=How many PCA components to use (default \= 50)\n<br><br>\nThe number of principal components to be used in the Principal Component Analysis (PCA) in our Batch Correction. By default, our script uses the default value of 50 for the \# of Principal Components.
 p3_fileFormat=
-p3_flag=--use_batch_names
-p3_name=use_batch_names
+p3_flag=--ncomps
+p3_name=ncomps
 p3_numValues=1..1
 p3_optional=
 p3_prefix=
 p3_prefix_when_specified=
-p3_type=java.lang.String
-p3_value=TRUE\=TRUE;FALSE\=FALSE
+p3_type=java.lang.Integer
+p3_value=
 p4_MODE=
-p4_TYPE=Integer
-p4_default_value=50
-p4_description=How many PCA components to use (default \= 50)\n<br><br>\nThe number of principal components to be used in the Principal Component Analysis (PCA) in our Batch Correction. By default, our script uses the default value of 50 for the \# of Principal Components.
+p4_TYPE=TEXT
+p4_default_value=TRUE
+p4_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)\n<br><br>\nnCount_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets
 p4_fileFormat=
-p4_flag=--ncomps
-p4_name=ncomps
+p4_flag=--nCount_RNA
+p4_name=nCount_RNA
 p4_numValues=1..1
 p4_optional=
 p4_prefix=
 p4_prefix_when_specified=
-p4_type=java.lang.Integer
-p4_value=
+p4_type=java.lang.String
+p4_value=TRUE\=TRUE;FALSE\=FALSE
 p5_MODE=
 p5_TYPE=TEXT
 p5_default_value=TRUE
-p5_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)\n<br><br>\nnCount_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets
+p5_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)\n<br><br>\nnFeature_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets
 p5_fileFormat=
-p5_flag=--nCount_RNA
-p5_name=nCount_RNA
+p5_flag=--nFeature_RNA
+p5_name=nFeature_RNA
 p5_numValues=1..1
 p5_optional=
 p5_prefix=
@@ -79,30 +79,17 @@ p5_type=java.lang.String
 p5_value=TRUE\=TRUE;FALSE\=FALSE
 p6_MODE=
 p6_TYPE=TEXT
-p6_default_value=TRUE
-p6_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)\n<br><br>\nnFeature_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets
+p6_default_value=batch_correction_results
+p6_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')\n<br><br>\nModifies the name of the .pdf and .rds output files once our Batch Correction script has finished running
 p6_fileFormat=
-p6_flag=--nFeature_RNA
-p6_name=nFeature_RNA
+p6_flag=--output_file_name
+p6_name=output_file_name
 p6_numValues=1..1
 p6_optional=
 p6_prefix=
 p6_prefix_when_specified=
 p6_type=java.lang.String
-p6_value=TRUE\=TRUE;FALSE\=FALSE
-p7_MODE=
-p7_TYPE=TEXT
-p7_default_value=batch_correction_results
-p7_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')\n<br><br>\nModifies the name of the .pdf and .rds output files once our Batch Correction script has finished running
-p7_fileFormat=
-p7_flag=--output_file_name
-p7_name=output_file_name
-p7_numValues=1..1
-p7_optional=
-p7_prefix=
-p7_prefix_when_specified=
-p7_type=java.lang.String
-p7_value=
+p6_value=
 privacy=public
 quality=development
 taskDoc=

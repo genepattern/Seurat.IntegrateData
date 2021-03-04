@@ -19,11 +19,8 @@ info(logger, message = "Loaded libraries: Seurat, ggplot2, optparse, log4r")
 info(logger, message = "==========================================================")
 
 # # ====================================
-# # PARAMETERS for INPUT
-# use_batch_names = FALSE (Default)
-# # ====================================
-# # PARAMETERS for PCA and Violin Plot
-# use_filenames_for_plots = FALSE (Default)
+# # PARAMETERS for INPUT, PCA, and Violin Plot
+# use_batch_names = TRUE (Default)
 # # ====================================
 # # PARAMETERS for PCA
 # ncomps = 50 (Default)
@@ -42,8 +39,7 @@ info(logger, message = "========================================================
 parser = OptionParser()
 # ====================================
 parser <- add_option(parser, c("--input_files"), help="List of files to load. Separate file names with '\ ' ")
-parser <- add_option(parser, c("--use_filenames_for_plots"), type="logical", default=FALSE, help="Display File Names on UMAP & Violin Plots (default = FALSE)")
-parser <- add_option(parser, c("--use_batch_names"), type="logical", default=TRUE, help="Map each input file to Batch Numbers (default = TRUE)")
+parser <- add_option(parser, c("--use_batch_names"), type="logical", default=TRUE, help="Maps each input file to Batch Numbers (default = TRUE)")
 # ====================================
 # PARAMETERS for PCA
 parser <- add_option(parser, c("--ncomps"), type="integer", default=50, help = "How many PCA components to use (default = 50)")
@@ -62,7 +58,6 @@ info(logger, message = "Parameters used:")
 args <- parse_args(parser)
 info(logger, message = paste("help:", args$help))
 info(logger, message = paste("input_files:", args$input_files))
-info(logger, message = paste("use_filenames_for_plots:", args$use_filenames_for_plots))
 info(logger, message = paste("use_batch_names:", args$use_batch_names))
 info(logger, message = paste("ncomps:", args$ncomps))
 info(logger, message = paste("nCount_RNA:", args$nCount_RNA))
@@ -120,8 +115,8 @@ seurat_objects <- list() # Initialize Seurat Object list
 
 for(i in 1:length(data))
 {
-  # Default Case for args$use_filenames_for_plots
-  if (args$use_filenames_for_plots == FALSE){
+  # Default Case for args$use_batch_names
+  if (args$use_batch_names == TRUE){
     seurat_objects[[i]] <- CreateSeuratObject(counts = data[[i]], project = batch_names[[i]])
     
     # Associates all levels in Seurat Object with Current Batch
@@ -197,7 +192,7 @@ info(logger, message = "Finished running UMAP on Seurat Objects")
 info(logger, message = "==========================================================")
 
 
-if (args$use_filenames_for_plots == FALSE){
+if (args$use_batch_names == TRUE){
   info(logger, message = "==========================================================")
   info(logger, message = "Creating Dictionary for Seurat Batch Objects")
   pdf(file = paste(args$output_file_name, ".pdf", sep = ""), width = 8.5, height = 11)
@@ -220,7 +215,7 @@ if (args$use_filenames_for_plots == FALSE){
   info(logger, message = "Finished Creating Dictionary for Seurat Batch Objects")
   info(logger, message = "==========================================================")
   
-} else{ # This will simply generate a pdf file when args$use_filenames_for_plots == TRUE
+} else{ # This will generate a pdf file with file names, rather than batch names
   pdf(file = paste(args$output_file_name, ".pdf", sep = ""), width = 8.5, height = 11)
 }
 
@@ -232,10 +227,10 @@ seurat_objects[[length(seurat_objects)]] <- ScaleData(seurat_objects[[length(seu
 seurat_objects[[length(seurat_objects)]] <- RunPCA(seurat_objects[[length(seurat_objects)]], npcs = args$ncomps, verbose = FALSE, seed.use = 42)
 seurat_objects[[length(seurat_objects)]] <- RunUMAP(seurat_objects[[length(seurat_objects)]], reduction.use = "pca", dims = 1:args$ncomps, seed.use = 42)
 
-p1 <- DimPlot(seurat_objects[[length(seurat_objects)]], reduction = "umap") + theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + ggtitle("Non-Batch Corrected Data")
+p1 <- DimPlot(seurat_objects[[length(seurat_objects)]], reduction = "umap") + theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + ggtitle("Non-Batch-Corrected Data")
 p1
 
-p2 <- DimPlot(data_integrated, reduction = "umap") + theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + ggtitle("Batch Corrected Data")
+p2 <- DimPlot(data_integrated, reduction = "umap") + theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + ggtitle("Batch-Corrected Data")
 p2
 info(logger, message = "Finished Plotting UMAP Plots")
 info(logger, message = "==========================================================")
