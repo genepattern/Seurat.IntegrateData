@@ -15,7 +15,7 @@ os=any
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2) module to pre-process your data and then use the .txt output from Seurat.QC in this module.
+p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a <code>.txt</code> file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a <code>.tar</code>, or <code>.gz</code> file, please use the <a href="https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2">Seurat.QC</a> module to pre-process your data and then use the .txt output from Seurat.QC in this module.
 p1_fileFormat=txt
 p1_flag=--input_files
 p1_name=input_files
@@ -28,7 +28,7 @@ p1_value=
 p2_MODE=
 p2_TYPE=TEXT
 p2_default_value=TRUE
-p2_description=(default \= TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
+p2_description=(default = TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
 p2_fileFormat=
 p2_flag=--use_batch_names
 p2_name=use_batch_names
@@ -54,7 +54,7 @@ p3_value=
 p4_MODE=
 p4_TYPE=TEXT
 p4_default_value=TRUE
-p4_description=(default \= TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets
+p4_description=(default \= TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets.
 p4_fileFormat=
 p4_flag=--nCount_RNA
 p4_name=nCount_RNA
@@ -67,7 +67,7 @@ p4_value=TRUE\=TRUE;FALSE\=FALSE
 p5_MODE=
 p5_TYPE=TEXT
 p5_default_value=TRUE
-p5_description=(default \= TRUE) Whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets
+p5_description=(default \= TRUE) Whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets.
 p5_fileFormat=
 p5_flag=--nFeature_RNA
 p5_name=nFeature_RNA
@@ -80,7 +80,7 @@ p5_value=TRUE\=TRUE;FALSE\=FALSE
 p6_MODE=
 p6_TYPE=TEXT
 p6_default_value=batch_correction_results
-p6_description=(default \= 'batch_correction_results') Base name for the `.pdf` and `.rds` output files 
+p6_description=(default = <code>batch_correction_results</code>) Base name for the <code>.pdf</code> and <code>.rds</code> output files.
 p6_fileFormat=
 p6_flag=--output_file_name
 p6_name=output_file_name
