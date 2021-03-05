@@ -1,21 +1,21 @@
-#Seurat.BatchCorrection
-#Thu Mar 04 03:39:38 UTC 2021
+# Seurat.BatchCorrection  Seurat.BatchCorrection.lsid=urn:lsid:genepattern.org:module.analysis:00414
+#Fri Mar 05 03:09:18 GMT 2021
 JVMLevel=
-LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:7
-author=Jonathan Zamora;UCSD-MesirovLab
-categories=beta;dimension reduction;dimension reduction;preprocess & utilities;preprocess & utilities
-commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
+LSID=urn\:lsid\:genepattern.org\:module.analysis\:00414\:2
+author=Jonathan Zamora and Edwin F. Juárez; UCSD-MesirovLab
+categories=dimension reduction;preprocess & utilities;single-cell
+commandLine=Rscript /module/batch_correction.R --input_files  <input_files>   --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
 cpuType=any
-description=Batch Correction for Seurat Objects
+description=GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 fileFormat=pdf;rds;txt
-job.docker.image=genepattern/seurat-suite\:2.4
+job.docker.image=genepattern/seurat-batchcorrection\:2.0
 language=any
 name=Seurat.BatchCorrection
 os=any
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=.txt file(s) are used as input, and each .txt file is composed of gene expression data.\n<br><br>\nIf your files are in .h5 or .tar format, please consult the <a href\="https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2">Seurat.QC</a> module to pre-process your data and then use the .txt output from Seurat.QC in this module.
+p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2) module to pre-process your data and then use the .txt output from Seurat.QC in this module.
 p1_fileFormat=txt
 p1_flag=--input_files
 p1_name=input_files
@@ -28,7 +28,7 @@ p1_value=
 p2_MODE=
 p2_TYPE=TEXT
 p2_default_value=TRUE
-p2_description=Map each input file to Batch Numbers (default \= TRUE)\n<br><br>\nBy mapping each input file to a Batch Number, starting from 1, we can use this batch-mapping throughout the batch correction script to produce an elegant, straightforward output for users. When set to FALSE, the batch names will be set to the file names.
+p2_description=(default \= TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
 p2_fileFormat=
 p2_flag=--use_batch_names
 p2_name=use_batch_names
@@ -41,7 +41,7 @@ p2_value=TRUE\=TRUE;FALSE\=FALSE
 p3_MODE=
 p3_TYPE=Integer
 p3_default_value=50
-p3_description=How many PCA components to use (default \= 50)\n<br><br>\nThe number of principal components to be used in the Principal Component Analysis (PCA) in our Batch Correction. By default, our script uses the default value of 50 for the \# of Principal Components.
+p3_description=(default \= 50) The number of principal components to be used in the Principal Component Analysis (PCA) for batch correction.
 p3_fileFormat=
 p3_flag=--ncomps
 p3_name=ncomps
@@ -54,7 +54,7 @@ p3_value=
 p4_MODE=
 p4_TYPE=TEXT
 p4_default_value=TRUE
-p4_description=Display nCount_RNA feature on Violin Plot (default \= TRUE)\n<br><br>\nnCount_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets
+p4_description=(default \= TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets
 p4_fileFormat=
 p4_flag=--nCount_RNA
 p4_name=nCount_RNA
@@ -67,7 +67,7 @@ p4_value=TRUE\=TRUE;FALSE\=FALSE
 p5_MODE=
 p5_TYPE=TEXT
 p5_default_value=TRUE
-p5_description=Display nFeature_RNA feature on Violin Plot (default \= TRUE)\n<br><br>\nnFeature_RNA is a boolean (TRUE / FALSE) parameter that will affect whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets
+p5_description=(default \= TRUE) Whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets
 p5_fileFormat=
 p5_flag=--nFeature_RNA
 p5_name=nFeature_RNA
@@ -80,7 +80,7 @@ p5_value=TRUE\=TRUE;FALSE\=FALSE
 p6_MODE=
 p6_TYPE=TEXT
 p6_default_value=batch_correction_results
-p6_description=Output File Name for Batch Correction Analysis (default \= 'batch_correction_results')\n<br><br>\nModifies the name of the .pdf and .rds output files once our Batch Correction script has finished running
+p6_description=(default \= 'batch_correction_results') Base name for the `.pdf` and `.rds` output files 
 p6_fileFormat=
 p6_flag=--output_file_name
 p6_name=output_file_name
@@ -91,8 +91,8 @@ p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=
 privacy=public
-quality=development
+quality=production
 taskDoc=
-taskType=beta
-userid=jonzamora
+taskType=singlecell
+userid=ejuarez@ucsd.edu
 version=Introduced various updates to parameters, output, and program structure

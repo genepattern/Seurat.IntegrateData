@@ -1,6 +1,6 @@
 # Seurat.BatchCorrection (v2)
 ---
-**Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package.
+**Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 
 **Author**: Jonathan Zamora
 
@@ -13,7 +13,7 @@
 ## Summary
 ---
 
-The `Seurat.BatchCorrection` Module aims to integrate / "batch-correct" multiple single-cell datasets and identify shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated / batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
+The `Seurat.BatchCorrection` Module integrates (correct for batch effects) multiple single-cell datasets and identify shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
 
 
 ## References
@@ -30,12 +30,12 @@ The `Seurat.BatchCorrection` Module aims to integrate / "batch-correct" multiple
 
 | Name | Description |
 -------|--------------
-| input_files         | `.txt` file(s) are used as input, and each `.txt` file is composed of gene expression data. If your files are in `.h5` or `.tar` format, please consult the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2) module to pre-process your data and then use the .txt output from Seurat.QC in this module. |
-| use_batch_names | Determines whether input file names or batch names will be used throughout the batch correction script. By default, this value is `TRUE` since we prefer to map each batch of gene expression data to an ordered batch number beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. Using ordered batch numbers for each input file will produce elegant results, and for reference, the first page of the output `.pdf` file will contain a mapping for each batch-input file pair. 
-| ncomps            | The number of principal components to be used in the Principal Component Analysis (PCA) in our Batch Correction. By default, our script uses the default value of 50 for the # of Principal Components.                       |
-| nCount_RNA        | Boolean TRUE / FALSE parameter that will affect whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets|
-| nFeature_RNA      | Boolean TRUE / FALSE parameter that will affect whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets            |
-| output_file_name  | Modifies the name of the `.pdf` and `.rds` output files once our Batch Correction script has finished running                      |
+| input_files         | Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2) module to pre-process your data and then use the .txt output from Seurat.QC in this module. For sample data see [test data file 1](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt) and [test data file 2](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt)|
+| use_batch_names | (default = TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
+| ncomps            | (default = 50) The number of principal components to be used in the Principal Component Analysis (PCA) for batch correction. |
+| nCount_RNA        | (default = TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets|
+| nFeature_RNA      | (default = TRUE) Whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets            |
+| output_file_name  | (default = 'batch_correction_results') Base name for the `.pdf` and `.rds` output files |
 
 
 ## Output Files
