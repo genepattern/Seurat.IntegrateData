@@ -2,7 +2,7 @@
 ---
 **Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 
-**Author**: Jonathan Zamora
+**Authors**: Jonathan Zamora and Edwin F. Juárez
 
 **Contact**: [Forum Link](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help)
 
@@ -23,7 +23,7 @@ The `Seurat.BatchCorrection` Module integrates (correct for batch effects) multi
 [Seurat](https://satijalab.org/seurat/)
 
 ### Technical Notes
-
+This module runs in the Docker container tagged `genepattern/seurat-batchcorrection:2.0`.
 
 ## Parameters
 ---
@@ -56,7 +56,7 @@ The `Seurat.BatchCorrection` Module integrates (correct for batch effects) multi
 ## License
 ---
 
-`Seurat.BatchCorrection` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.BatchCorrection/blob/develop/LICENSE
+`Seurat.BatchCorrection` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.BatchCorrection/blob/develop/LICENSE.
 
 
 ## Platform Dependencies
@@ -72,5 +72,5 @@ The `Seurat.BatchCorrection` Module integrates (correct for batch effects) multi
 
 | Version | Release Date | Description                                 |
 ----------|--------------|---------------------------------------------|
-| 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection` |
-| 2       | Feb. 24th, 2021 | Introduced updates to parameters, program structure, and output format
+| 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection`. |
+| 2       | Mar. 3rd, 2021 | Introduced updates to parameters, program structure, and output format.
