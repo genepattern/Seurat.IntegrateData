@@ -2,7 +2,7 @@
 ---
 **Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 
-**Authors**: Jonathan Zamora and Edwin F. Juárez
+**Authors**: Jonathan Zamora and Edwin F. Juárez, UCSD
 
 **Contact**: [Forum Link](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help)
 
@@ -13,7 +13,7 @@
 ## Summary
 ---
 
-The `Seurat.BatchCorrection` Module integrates (correct for batch effects) multiple single-cell datasets and identify shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
+The `Seurat.BatchCorrection` Module integrates (corrects for batch effects) multiple single-cell datasets and identifies shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
 
 
 ## References
@@ -72,5 +72,5 @@ This module runs in the Docker container tagged `genepattern/seurat-batchcorrect
 
 | Version | Release Date | Description                                 |
 ----------|--------------|---------------------------------------------|
+| 2       | Mar. 3rd, 2021 | Introduced updates to parameters, program structure, and output format.|
 | 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection`. |
-| 2       | Mar. 3rd, 2021 | Introduced updates to parameters, program structure, and output format.
