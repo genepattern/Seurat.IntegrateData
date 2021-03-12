@@ -23,7 +23,9 @@ The `Seurat.BatchCorrection` Module integrates (corrects for batch effects) mult
 [Seurat](https://satijalab.org/seurat/)
 
 ### Technical Notes
-This module runs in the Docker container tagged `genepattern/seurat-batchcorrection:3.0`.
+This module runs in the Docker container tagged [`genepattern/seurat-batchcorrection:3.0`](https://hub.docker.com/repository/docker/genepattern/seurat-batchcorrection).
+
+GitHub repository for this module's code: https://github.com/genepattern/Seurat.BatchCorrection
 
 ## Parameters
 ---
