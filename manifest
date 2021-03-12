@@ -1,7 +1,7 @@
 #Seurat.BatchCorrection
 #Fri Mar 12 22:02:08 UTC 2021
 JVMLevel=
-LSID=urn\:lsid\:genepattern.or\g:module.analysis\:00414
+LSID=urn\:lsid\:genepattern.or\g:module.analysis\:00414:3
 author=Jonathan Zamora;UCSD-MesirovLab
 categories=dimension reduction;preprocess & utilities; singlecell; single-cell
 commandLine=Rscript  /module/batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
