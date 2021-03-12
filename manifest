@@ -1,21 +1,21 @@
 #Seurat.BatchCorrection
 #Fri Mar 12 22:02:08 UTC 2021
 JVMLevel=
-LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:7
+LSID=urn\:lsid\:genepattern.or\g:module.analysis\:00414
 author=Jonathan Zamora;UCSD-MesirovLab
-categories=beta;dimension reduction;preprocess & utilities
-commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
+categories=dimension reduction;preprocess & utilities; singlecell; single-cell
+commandLine=Rscript  /module/batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
 cpuType=any
 description=Batch Correction for Seurat Objects
 fileFormat=pdf;rds;txt
-job.docker.image=genepattern/seurat-suite\:2.4
+job.docker.image=genepattern/seurat-batchcorrection:3.0
 language=any
 name=Seurat.BatchCorrection
 os=any
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. \n<br><br>\nIf your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the <a href\="https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2">Seurat.QC</a> module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module.\n<br><br>\nFor sample data see \n<a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt">test data file 1</a> and <a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt">test data file 2</a>.
+p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` or one Seurat Object (`.rds`) file per batch. \n<br><br>\nIf your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the <a href\="https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2">Seurat.QC</a> module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module.\n<br><br>\nFor sample data see \n<a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt">test data file 1</a> and <a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt">test data file 2</a>.
 p1_fileFormat=txt
 p1_flag=--input_files
 p1_name=input_files
@@ -91,8 +91,8 @@ p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=
 privacy=public
-quality=development
+quality=production
 taskDoc=
-taskType=beta
+taskType=singlecell
 userid=jonzamora
 version=Introduced various updates to input file types, parameters, output, and program structure
