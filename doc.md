@@ -1,4 +1,4 @@
-# Seurat.BatchCorrection (v2)
+# Seurat.BatchCorrection (v3)
 ---
 **Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 
@@ -30,7 +30,7 @@ This module runs in the Docker container tagged `genepattern/seurat-batchcorrect
 
 | Name | Description |
 -------|--------------
-| input_files         | Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2) module to pre-process your data and then use the .txt output from Seurat.QC in this module. For sample data see [test data file 1](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt) and [test data file 2](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt).|
+| input_files         | Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2) module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module. For sample data see [test data file 1](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt) and [test data file 2](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt).|
 | use_batch_names | (default = TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
 | ncomps            | (default = 50) The number of principal components to be used in the Principal Component Analysis (PCA) for batch correction. |
 | nCount_RNA        | (default = TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets.|
@@ -72,5 +72,6 @@ This module runs in the Docker container tagged `genepattern/seurat-batchcorrect
 
 | Version | Release Date | Description                                 |
 ----------|--------------|---------------------------------------------|
+| 3       | Mar. 12th, 2021 | Input types now include `.rds`, `tsv`, and `.txt` files |
 | 2       | Mar. 3rd, 2021 | Introduced updates to parameters, program structure, and output format.|
 | 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection`. |

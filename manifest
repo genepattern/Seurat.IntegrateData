@@ -1,21 +1,21 @@
-# Seurat.BatchCorrection  Seurat.BatchCorrection.lsid=urn:lsid:genepattern.org:module.analysis:00414
-#Fri Mar 05 03:09:18 GMT 2021
+#Seurat.BatchCorrection
+#Fri Mar 12 22:02:08 UTC 2021
 JVMLevel=
-LSID=urn\:lsid\:genepattern.org\:module.analysis\:00414\:2
-author=Jonathan Zamora and Edwin F. Juárez; UCSD-MesirovLab
-categories=dimension reduction;preprocess & utilities;single-cell
-commandLine=Rscript /module/batch_correction.R --input_files  <input_files>   --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
+LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:151\:7
+author=Jonathan Zamora;UCSD-MesirovLab
+categories=beta;dimension reduction;preprocess & utilities
+commandLine=Rscript  <libdir>batch_correction.R --input_files  <input_files>  --use_batch_names <use_batch_names> --ncomps <ncomps> --nCount_RNA <nCount_RNA> --nFeature_RNA <nFeature_RNA> --output_file_name <output_file_name>
 cpuType=any
-description=GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
+description=Batch Correction for Seurat Objects
 fileFormat=pdf;rds;txt
-job.docker.image=genepattern/seurat-batchcorrection\:2.0
+job.docker.image=genepattern/seurat-suite\:2.4
 language=any
 name=Seurat.BatchCorrection
 os=any
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a <code>.txt</code> file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a <code>.tar</code>, or <code>.gz</code> file, please use the <a href="https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2">Seurat.QC</a> module to pre-process your data and then use the .txt output from Seurat.QC in this module.
+p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` file per batch. \n<br><br>\nIf your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the <a href\="https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2">Seurat.QC</a> module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module.\n<br><br>\nFor sample data see \n<a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt">test data file 1</a> and <a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt">test data file 2</a>.
 p1_fileFormat=txt
 p1_flag=--input_files
 p1_name=input_files
@@ -28,7 +28,7 @@ p1_value=
 p2_MODE=
 p2_TYPE=TEXT
 p2_default_value=TRUE
-p2_description=(default = TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
+p2_description=(default \= TRUE) Map each input file to Batch Numbers beginning with Batch 1 and going up to Batch n where n represents the number of input files.\n<br><br>\nWhen set to FALSE, the batch names will be set to the file names.
 p2_fileFormat=
 p2_flag=--use_batch_names
 p2_name=use_batch_names
@@ -80,7 +80,7 @@ p5_value=TRUE\=TRUE;FALSE\=FALSE
 p6_MODE=
 p6_TYPE=TEXT
 p6_default_value=batch_correction_results
-p6_description=(default = <code>batch_correction_results</code>) Base name for the <code>.pdf</code> and <code>.rds</code> output files.
+p6_description=(default \= 'batch_correction_results') Base name for the .pdf and .rds output files.
 p6_fileFormat=
 p6_flag=--output_file_name
 p6_name=output_file_name
@@ -91,8 +91,8 @@ p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=
 privacy=public
-quality=production
+quality=development
 taskDoc=
-taskType=singlecell
-userid=ejuarez@ucsd.edu
-version=Introduced various updates to parameters, output, and program structure
+taskType=beta
+userid=jonzamora
+version=Introduced various updates to input file types, parameters, output, and program structure

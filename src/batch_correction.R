@@ -81,7 +81,7 @@ info(logger, message = paste("Reading Files contained within:", args$input_files
 # Run this code by default
 for(i in 1:length(lines)){
   
-  if (grepl("\\.txt$", lines[[i]]))
+  if (grepl("\\.txt$", lines[[i]]) || grepl("\\.tsv$", lines[[i]]))
   {
     data[[i]] <- read.delim(file = lines[[i]], row.names=1) # creates data frame for each input file
     data_labels[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores corresponding data labels
@@ -94,9 +94,21 @@ for(i in 1:length(lines)){
       batch_names[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores data labels for each batch name
     }
     counter = counter + 1 # increment batch counter
+  } else if (grepl("\\.rds$", lines[[i]])) {
+    data[[i]] <- readRDS(file = lines[[i]]) # creates data frame for each input file
+    data_labels[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores corresponding data labels
+    
+    if (args$use_batch_names == TRUE ) {
+      batch_names[[i]] <- paste("Batch", counter) # store batch names in list
+    }
+    
+    else if (args$use_batch_names == FALSE) {
+      batch_names[[i]] <- tail(strsplit(lines[[i]], "/")[[1]], 1) # stores data labels for each batch name
+    }
+    counter = counter + 1 # increment batch counter
   } else {
-    info(logger, message = paste("ERROR: The current file", lines[[i]], "is not in .txt format. Please use .txt file inputs only"))
-    info(logger, message = paste("If you have .h5 or .tar files, consult Seurat.QC [https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2] to convert those files to .txt format"))
+    info(logger, message = paste("ERROR: The current file", lines[[i]], "is not in a valid format. Please use .txt, .tsv, or .rds file inputs only"))
+    info(logger, message = paste("If you have .tar.gz or .zip files, consult Seurat.QC [https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2] to convert those files to .txt or .rds format"))
     info(logger, message = paste("END OF PROGRAM"))
     quit(save="no")
   }
@@ -115,19 +127,28 @@ seurat_objects <- list() # Initialize Seurat Object list
 
 for(i in 1:length(data))
 {
-  # Default Case for args$use_batch_names
-  if (args$use_batch_names == TRUE){
-    seurat_objects[[i]] <- CreateSeuratObject(counts = data[[i]], project = batch_names[[i]])
-    
+  if (is(data[[i]], "Seurat") == TRUE && args$use_batch_names == TRUE) {
+    seurat_objects[[i]] <- data[[i]]
+    Project(seurat_objects[[i]]) <- batch_names[[i]]
     # Associates all levels in Seurat Object with Current Batch
-    if (length(levels(seurat_objects[[i]])) > 1){
+    levels(seurat_objects[[i]]@active.ident) <- rep(batch_names[[i]], length(levels(seurat_objects[[i]])))
+  }
+  
+  else if (is(data[[i]], "Seurat") == TRUE && args$use_batch_names == FALSE) {
+    seurat_objects[[i]] <- data[[i]]
+    Project(seurat_objects[[i]]) <- data_labels[[i]]
+    levels(seurat_objects[[i]]@active.ident) <- rep(data_labels[[i]], length(levels(seurat_objects[[i]])))
+  }
+  
+  else {
+    if (args$use_batch_names == TRUE) {
+      seurat_objects[[i]] <- CreateSeuratObject(counts = data[[i]], project = batch_names[[i]])
+      
+      # Associates all levels in Seurat Object with Current Batch
       levels(seurat_objects[[i]]@active.ident) <- rep(batch_names[[i]], length(levels(seurat_objects[[i]])))
-    }
-    
-  } else{
-    seurat_objects[[i]] <- CreateSeuratObject(counts = data[[i]], project = data_labels[[i]])
-    
-    if (length(levels(seurat_objects[[i]])) > 1){
+      
+    } else {
+      seurat_objects[[i]] <- CreateSeuratObject(counts = data[[i]], project = data_labels[[i]])
       levels(seurat_objects[[i]]@active.ident) <- rep(data_labels[[i]], length(levels(seurat_objects[[i]])))
     }
   }
@@ -136,8 +157,6 @@ for(i in 1:length(data))
 batch_names <- append(batch_names, paste("Batch", (length(batch_names) + 1))) # Add batch number for merged seurat objects
 merged_seurat <- merge(x=seurat_objects[[1]], y=seurat_objects[2:length(seurat_objects)], project = batch_names[[length(batch_names)]]) # merge (but dont correct) seurat objects
 seurat_objects <- append(seurat_objects, merged_seurat) # append merged seurat object to end of seurat object list
-
-seurat_objects
 
 info(logger, message = paste("Created Seurat Objects for files contained within:", args$input_files))
 info(logger, message = "==========================================================")
@@ -150,8 +169,6 @@ for(i in 1:length(seurat_objects)){
   seurat_objects[[i]] <- NormalizeData(seurat_objects[[i]], verbose = FALSE)
   seurat_objects[[i]] <- FindVariableFeatures(seurat_objects[[i]], selection.method = "vst", nfeatures = 500, verbose = FALSE)
 }
-
-seurat_objects
 
 info(logger, message = paste("Finished Normalizing Data and Finding Variable Features on Seurat Objects"))
 info(logger, message = "==========================================================")
