@@ -1,4 +1,4 @@
-### copyright 2017-2020 Regents of the University of California and the Broad Institute. All rights reserved.
+### copyright 2017-2021 Regents of the University of California and the Broad Institute. All rights reserved.
 
 FROM satijalab/seurat:3.2.0
 MAINTAINER Edwin Juarez <ejuarez@ucsd.edu>

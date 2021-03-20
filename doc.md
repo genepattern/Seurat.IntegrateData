@@ -18,21 +18,23 @@ The `Seurat.BatchCorrection` Module integrates (corrects for batch effects) mult
 
 ## References
 ---
+"Seurat V3 Paper:" Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, Mauck WM 3rd, Hao Y, Stoeckius M, Smibert P, Satija R. Comprehensive Integration of Single-Cell Data. Cell. 2019 Jun 13;177(7):1888-1902.e21. doi: [10.1016/j.cell.2019.05.031](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6687398/). Epub 2019 Jun 6. PMID: 31178118; PMCID: PMC6687398.
+
 [Satija Lab](https://satijalab.org)
 
 [Seurat](https://satijalab.org/seurat/)
 
 ### Technical Notes
-This module runs in the Docker container tagged [`genepattern/seurat-batchcorrection:3.0`](https://hub.docker.com/repository/docker/genepattern/seurat-batchcorrection).
+This module runs in the Docker container tagged [`genepattern/seurat-batchcorrection:3.1`](https://hub.docker.com/layers/142293536/genepattern/seurat-batchcorrection/3.1/images/sha256-4b85c00f3d14456a59574acd36b9cfa639f6ce33518abcb9994d12c81a724c09?context=explore).
 
-GitHub repository for this module's code: https://github.com/genepattern/Seurat.BatchCorrection
+GitHub repository for this module's code & version: https://github.com/genepattern/Seurat.BatchCorrection/tree/v3
 
 ## Parameters
 ---
 
 | Name | Description |
 -------|--------------
-| input_files         | Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` or one Seurat Object (`.rds`) file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416:2) module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module. For sample data see [test data file 1](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt) and [test data file 2](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt).|
+| input_files         | Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` or one Seurat Object (`.rds`) file per batch. If your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the [Seurat.QC](https://cloud.genepattern.org/gp/pages/index.jsf?lsid=urn:lsid:genepattern.org:module.analysis:00416) module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module. For sample data see [test data file 1](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt) and [test data file 2](https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt).|
 | use_batch_names | (default = TRUE) Map each input file to Batch Numbers beginning with `Batch 1` and going up to `Batch n` where `n` represents the number of input files. When set to FALSE, the batch names will be set to the file names. 
 | ncomps            | (default = 50) The number of principal components to be used in the Principal Component Analysis (PCA) for batch correction. |
 | nCount_RNA        | (default = TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets.|
@@ -58,7 +60,7 @@ GitHub repository for this module's code: https://github.com/genepattern/Seurat.
 ## License
 ---
 
-`Seurat.BatchCorrection` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.BatchCorrection/blob/develop/LICENSE.
+`Seurat.BatchCorrection` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.BatchCorrection/blob/v3/LICENSE.
 
 
 ## Platform Dependencies
