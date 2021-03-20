@@ -74,6 +74,6 @@ GitHub repository for this module's code: https://github.com/genepattern/Seurat.
 
 | Version | Release Date | Description                                 |
 ----------|--------------|---------------------------------------------|
-| 3       | Mar. 12th, 2021 | Input types now include `.rds`, `tsv`, and `.txt` files |
+| 3       | Mar. 12th, 2021 | Input types now include `.rds`, `tsv`, and `.txt` files. Output shows data before the batch correction (in addition to post batch correction). |
 | 2       | Mar. 3rd, 2021 | Introduced updates to parameters, program structure, and output format.|
 | 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection`. |
