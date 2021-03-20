@@ -5,7 +5,7 @@ FROM genepattern/seurat-suite:2.4
 MAINTAINER Edwin Juarez <ejuarez@ucsd.edu>
 
 ENV LANG=C LC_ALL=C
-USER root
+USER $NB_USER
 
 RUN R -e "library('Seurat');sessionInfo()"
 
