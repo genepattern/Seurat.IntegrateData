@@ -95,4 +95,4 @@ quality=production
 taskDoc=doc.html
 taskType=singlecell
 userid=jonzamora
-version=Introduced various updates to input file types, parameters, output, and program structure
+version=Input types now include `.rds`, `tsv`, and `.txt` files. Output shows data before the batch correction (in addition to post batch correction).
