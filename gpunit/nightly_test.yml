@@ -7,10 +7,10 @@
 # Note: this test uses a custom diff command
 #
 
-name: "Seurat.BatchCorrection - Basic test"
+name: "Seurat.BatchCorrection - Nightly test"
 module: Seurat.BatchCorrection
 params:
-    file_list: ["https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt","https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt"]
+    input_files: ["https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt","https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt"]
 assertions:
         jobStatus: success
         numFiles: 5
