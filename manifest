@@ -17,7 +17,7 @@ p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
 p1_description=Gene expression matrices (columns are cell IDs and rows are genes) stored in a `.txt` or one Seurat Object (`.rds`) file per batch. \n<br><br>\nIf your files are in 10x Genomics (Cell Ranger) format or stored in a `.tar`, or `.gz` file, please use the <a href\="https\://cloud.genepattern.org/gp/pages/index.jsf?lsid\=urn\:lsid\:genepattern.org\:module.analysis\:00416\:2">Seurat.QC</a> module to pre-process your data and then use the `.txt` or `.rds` output from Seurat.QC in this module.\n<br><br>\nFor sample data see \n<a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt">test data file 1</a> and <a href\="https\://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt">test data file 2</a>.
-p1_fileFormat=txt
+p1_fileFormat=txt;rds
 p1_flag=--input_files
 p1_name=input_files
 p1_numValues=1+
