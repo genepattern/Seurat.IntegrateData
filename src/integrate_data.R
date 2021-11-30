@@ -1,10 +1,10 @@
-# Batch Correction Script
+# Integrate Data Script
 # Written by Jonathan Zamora, UCSD-MesirovLab
 # For use in GenePattern
 
 
 suppressMessages(suppressWarnings(library("log4r")))
-logfile <- "batch_correction_log.txt"
+logfile <- "integrate_data_log.txt"
 console_appender <- console_appender(layout = default_log_layout())
 file_appender <- file_appender(logfile, append = TRUE, layout = default_log_layout())
 logger <- log4r::logger(threshold = "INFO", appenders = list(console_appender, file_appender))
@@ -30,10 +30,10 @@ info(logger, message = "========================================================
 # nFeature_RNA: TRUE (Default)
 # # ====================================
 # # PARAMETERS for OUTPUT
-# output_file_name: "batch_correction_results" (Default)
+# output_file_name: "integrate_data_results" (Default)
 # # ====================================
 
-# Parameter Descriptions can be found at: https://github.com/genepattern/Seurat.BatchCorrection/blob/develop/doc.md
+# Parameter Descriptions can be found at: https://github.com/genepattern/Seurat.IntegrateData/blob/develop/doc.md
 # ====================================
 # Parse Input Arguments
 parser = OptionParser()
@@ -49,7 +49,7 @@ parser <- add_option(parser, c("--nCount_RNA"), type="logical", default=TRUE, he
 parser <- add_option(parser, c("--nFeature_RNA"), type="logical", default=TRUE, help="Display nFeature_RNA feature on Violin Plot (default = TRUE)")
 # ====================================
 # PARAMETERS for Output File
-parser <- add_option(parser, c("--output_file_name"), default="batch_correction_results", help="Output File Name for Batch Correction Analysis (default = 'batch_correction_results')")
+parser <- add_option(parser, c("--output_file_name"), default="batch_correction_results", help="Output File Name for Data Integration Analysis (default = 'integrate_data_results')")
 # ====================================
 
 
