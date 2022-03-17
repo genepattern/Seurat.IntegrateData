@@ -1,4 +1,4 @@
-# Seurat.BatchCorrection (v3)
+# Seurat.IntegrateData (v3)
 ---
 **Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 
@@ -13,7 +13,7 @@
 ## Summary
 ---
 
-The `Seurat.BatchCorrection` Module integrates (corrects for batch effects) multiple single-cell datasets and identifies shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
+The `Seurat.IntegrateData` Module integrates (corrects for batch effects) multiple single-cell datasets and identifies shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
 
 
 ## References
@@ -25,9 +25,9 @@ The `Seurat.BatchCorrection` Module integrates (corrects for batch effects) mult
 [Seurat](https://satijalab.org/seurat/)
 
 ### Technical Notes
-This module runs in the Docker container tagged [`genepattern/seurat-batchcorrection:3.1`](https://hub.docker.com/layers/142293536/genepattern/seurat-batchcorrection/3.1/images/sha256-4b85c00f3d14456a59574acd36b9cfa639f6ce33518abcb9994d12c81a724c09?context=explore).
+This module runs in the Docker container tagged [`genepattern/seurat-suite\:4.0.3`](https://hub.docker.com/layers/142293536/genepattern/seurat-batchcorrection/3.1/images/sha256-4b85c00f3d14456a59574acd36b9cfa639f6ce33518abcb9994d12c81a724c09?context=explore).
 
-GitHub repository for this module's code & version: https://github.com/genepattern/Seurat.BatchCorrection/tree/v3
+GitHub repository for this module's code & version: https://github.com/genepattern/Seurat.IntegrateData/tree/v3
 
 ## Parameters
 ---
@@ -60,7 +60,7 @@ GitHub repository for this module's code & version: https://github.com/genepatte
 ## License
 ---
 
-`Seurat.BatchCorrection` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.BatchCorrection/blob/v3/LICENSE.
+`Seurat.IntegrateData` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.IntegrateData/blob/v3/LICENSE.
 
 
 ## Platform Dependencies
