@@ -1,6 +1,6 @@
-# Seurat.IntegrateData (v4)
+# Seurat.BatchCorrection (v3)
 ---
-**Description**: GenePattern module which implements the batch correction and data integration algorithm derived from the Seurat software package (Seurat version 3.2.0).
+**Description**: GenePattern module which implements the batch correction algorithm derived from the Seurat software package (Seurat version 3.2.0).
 
 **Authors**: Jonathan Zamora and Edwin F. Juárez, UCSD
 
@@ -13,7 +13,7 @@
 ## Summary
 ---
 
-The `Seurat.IntegrateData` Module integrates (corrects for batch effects) multiple single-cell datasets and identifies shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
+The `Seurat.BatchCorrection` Module integrates (corrects for batch effects) multiple single-cell datasets and identifies shared cell states that are present across different datasets, regardless of their origin. Once the Module integrates these datasets, the returned object will contain a new *Assay* that holds an integrated/batch-corrected expression matrix for all cells. The resultant batch-corrected expression matrix can then be used for downstream analyses and visualizations.
 
 
 ## References
@@ -39,13 +39,13 @@ GitHub repository for this module's code & version: https://github.com/genepatte
 | ncomps            | (default = 50) The number of principal components to be used in the Principal Component Analysis (PCA) for batch correction. |
 | nCount_RNA        | (default = TRUE) Whether or not the batch correction script will produce a violin plot of the number of molecules detected within a cell for our single-cell datasets.|
 | nFeature_RNA      | (default = TRUE) Whether or not the batch correction script will produce a violin plot of the number of genes detected within each cell of our single-cell datasets.            |
-| output_file_name  | (default = 'integrate_data_results') Base name for the `.pdf` and `.rds` output files. |
+| output_file_name  | (default = 'batch_correction_results') Base name for the `.pdf` and `.rds` output files. |
 
 
 ## Output Files
 ---
 
-1. `integrate_data_log.txt`
+1. `batch_correction_log.txt`
     - This `.txt` file contains a log of each process carried out during the batch correction script's execution.
 2. `output_file_name.rds`
     - This `.rds` file can be used on another one of GenePattern's Seurat suite modules, such as the `Seurat.Clustering` module.
@@ -60,7 +60,7 @@ GitHub repository for this module's code & version: https://github.com/genepatte
 ## License
 ---
 
-`Seurat.IntegrateData` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.IntegrateData/blob/v3/LICENSE.
+`Seurat.BatchCorrection` is distributed under a modified BSD license available at https://github.com/genepattern/Seurat.BatchCorrection/blob/v3/LICENSE.
 
 
 ## Platform Dependencies
@@ -76,7 +76,6 @@ GitHub repository for this module's code & version: https://github.com/genepatte
 
 | Version | Release Date | Description                                 |
 ----------|--------------|---------------------------------------------|
-| 4       | Nov. 29th, 2021 | Updated the naming convention of the module |
 | 3       | Mar. 12th, 2021 | Input types now include `.rds`, `tsv`, and `.txt` files. Output shows data before the batch correction (in addition to post batch correction). |
 | 2       | Mar. 3rd, 2021 | Introduced updates to parameters, program structure, and output format.|
 | 1       | Nov. 4th, 2020 | Initial Release of `Seurat.BatchCorrection`. |
