@@ -7,8 +7,8 @@
 # Note: this test uses a custom diff command
 #
 
-name: "Seurat.BatchCorrection - Nightly test"
-module: Seurat.BatchCorrection
+name: "Seurat.IntegrateData - Nightly test"
+module: Seurat.IntegrateData
 params:
     input_files: ["https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_HNSCC_noribo.txt","https://datasets.genepattern.org/data/module_support_files/Conos/small_500x500_MEL_noribo.txt"]
 assertions:
